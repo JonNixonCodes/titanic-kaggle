@@ -184,12 +184,16 @@ $(document).ready(function () {
 <h1>Data loading and cleaning</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGVzdCRTdXJ2aXZlZCA8LSBOQVxuZnVsbCA8LSByYmluZCh0cmFpbiwgdGVzdClcbiMgQ2hlY2tlZCB0aGUgc3RydWN0dXJlXG5zdHIoZnVsbClcblxuYGBgIn0= -->
-<pre class="r"><code>test$Survived &lt;- NA
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBJIHVzZWQgdGhlIGZvbGxvd2luZyBwYWNrYWdlc1xuIyBJIGxvYWRlZCB0aGUgZGF0YVxudHJhaW4gPC0gcmVhZC5jc3YoXCJ0cmFpbi5jc3ZcIiwgaGVhZGVyID0gVFJVRSlcbnRlc3QgPC0gcmVhZC5jc3YoXCJ0ZXN0LmNzdlwiLCBoZWFkZXIgPSBUUlVFKVxuIyBJIGNyZWF0ZWQgYSBjb21iaW5lZCBkYXRhc2V0XG50ZXN0JFN1cnZpdmVkIDwtIE5BXG5mdWxsIDwtIHJiaW5kKHRyYWluLCB0ZXN0KVxuIyBDaGVja2VkIHRoZSBzdHJ1Y3R1cmVcbnN0cihmdWxsKVxuYGBgIn0= -->
+<pre class="r"><code># I used the following packages
+# I loaded the data
+train &lt;- read.csv(&quot;train.csv&quot;, header = TRUE)
+test &lt;- read.csv(&quot;test.csv&quot;, header = TRUE)
+# I created a combined dataset
+test$Survived &lt;- NA
 full &lt;- rbind(train, test)
 # Checked the structure
-str(full)
-</code></pre>
+str(full)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiJ2RhdGEuZnJhbWUnOlx0MTMwOSBvYnMuIG9mICAxMiB2YXJpYWJsZXM6XG4gJCBQYXNzZW5nZXJJZDogaW50ICAxIDIgMyA0IDUgNiA3IDggOSAxMCAuLi5cbiAkIFN1cnZpdmVkICAgOiBpbnQgIDAgMSAxIDEgMCAwIDAgMCAxIDEgLi4uXG4gJCBQY2xhc3MgICAgIDogaW50ICAzIDEgMyAxIDMgMyAxIDMgMyAyIC4uLlxuICQgTmFtZSAgICAgICA6IEZhY3RvciB3LyAxMzA3IGxldmVscyBcIkFiYmluZywgTXIuIEFudGhvbnlcIiwuLjogMTA5IDE5MSAzNTggMjc3IDE2IDU1OSA1MjAgNjI5IDQxNyA1ODEgLi4uXG4gJCBTZXggICAgICAgIDogRmFjdG9yIHcvIDIgbGV2ZWxzIFwiZmVtYWxlXCIsXCJtYWxlXCI6IDIgMSAxIDEgMiAyIDIgMiAxIDEgLi4uXG4gJCBBZ2UgICAgICAgIDogbnVtICAyMiAzOCAyNiAzNSAzNSBOQSA1NCAyIDI3IDE0IC4uLlxuICQgU2liU3AgICAgICA6IGludCAgMSAxIDAgMSAwIDAgMCAzIDAgMSAuLi5cbiAkIFBhcmNoICAgICAgOiBpbnQgIDAgMCAwIDAgMCAwIDAgMSAyIDAgLi4uXG4gJCBUaWNrZXQgICAgIDogRmFjdG9yIHcvIDkyOSBsZXZlbHMgXCIxMTAxNTJcIixcIjExMDQxM1wiLC4uOiA1MjQgNTk3IDY3MCA1MCA0NzMgMjc2IDg2IDM5NiAzNDUgMTMzIC4uLlxuICQgRmFyZSAgICAgICA6IG51bSAgNy4yNSA3MS4yOCA3LjkyIDUzLjEgOC4wNSAuLi5cbiAkIENhYmluICAgICAgOiBGYWN0b3Igdy8gMTg3IGxldmVscyBcIlwiLFwiQTEwXCIsXCJBMTRcIiwuLjogMSA4MyAxIDU3IDEgMSAxMzEgMSAxIDEgLi4uXG4gJCBFbWJhcmtlZCAgIDogRmFjdG9yIHcvIDQgbGV2ZWxzIFwiXCIsXCJDXCIsXCJRXCIsXCJTXCI6IDQgMiA0IDQgNCAzIDQgNCA0IDIgLi4uXG4ifQ== -->
 <pre><code>'data.frame':   1309 obs. of  12 variables:
@@ -206,6 +210,36 @@ str(full)
  $ Cabin      : Factor w/ 187 levels &quot;&quot;,&quot;A10&quot;,&quot;A14&quot;,..: 1 83 1 57 1 1 131 1 1 1 ...
  $ Embarked   : Factor w/ 4 levels &quot;&quot;,&quot;C&quot;,&quot;Q&quot;,&quot;S&quot;: 4 2 4 4 4 3 4 4 4 2 ...</code></pre>
 <!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDaGVja2VkIHN1bW1hcnlcbnN1bW1hcnkoZnVsbClcbmBgYCJ9 -->
+<pre class="r"><code># Checked summary
+summary(full)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICBQYXNzZW5nZXJJZCAgICAgIFN1cnZpdmVkICAgICAgICAgIFBjbGFzcyAgICAgXG4gTWluLiAgIDogICAxICAgTWluLiAgIDowLjAwMDAgICBNaW4uICAgOjEuMDAwICBcbiAxc3QgUXUuOiAzMjggICAxc3QgUXUuOjAuMDAwMCAgIDFzdCBRdS46Mi4wMDAgIFxuIE1lZGlhbiA6IDY1NSAgIE1lZGlhbiA6MC4wMDAwICAgTWVkaWFuIDozLjAwMCAgXG4gTWVhbiAgIDogNjU1ICAgTWVhbiAgIDowLjM4MzggICBNZWFuICAgOjIuMjk1ICBcbiAzcmQgUXUuOiA5ODIgICAzcmQgUXUuOjEuMDAwMCAgIDNyZCBRdS46My4wMDAgIFxuIE1heC4gICA6MTMwOSAgIE1heC4gICA6MS4wMDAwICAgTWF4LiAgIDozLjAwMCAgXG4gICAgICAgICAgICAgICAgTkEncyAgIDo0MTggICAgICAgICAgICAgICAgICAgICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBOYW1lICAgICAgICAgIFNleCAgICAgICAgICAgQWdlICAgICAgICAgICAgU2liU3AgICAgICAgXG4gQ29ubm9sbHksIE1pc3MuIEthdGUgICAgICAgICAgICA6ICAgMiAgIGZlbWFsZTo0NjYgICBNaW4uICAgOiAwLjE3ICAgTWluLiAgIDowLjAwMDAgIFxuIEtlbGx5LCBNci4gSmFtZXMgICAgICAgICAgICAgICAgOiAgIDIgICBtYWxlICA6ODQzICAgMXN0IFF1LjoyMS4wMCAgIDFzdCBRdS46MC4wMDAwICBcbiBBYmJpbmcsIE1yLiBBbnRob255ICAgICAgICAgICAgIDogICAxICAgICAgICAgICAgICAgIE1lZGlhbiA6MjguMDAgICBNZWRpYW4gOjAuMDAwMCAgXG4gQWJib3R0LCBNci4gUm9zc21vcmUgRWR3YXJkICAgICA6ICAgMSAgICAgICAgICAgICAgICBNZWFuICAgOjI5Ljg4ICAgTWVhbiAgIDowLjQ5ODkgIFxuIEFiYm90dCwgTXJzLiBTdGFudG9uIChSb3NhIEh1bnQpOiAgIDEgICAgICAgICAgICAgICAgM3JkIFF1LjozOS4wMCAgIDNyZCBRdS46MS4wMDAwICBcbiBBYmVsc29uLCBNci4gU2FtdWVsICAgICAgICAgICAgIDogICAxICAgICAgICAgICAgICAgIE1heC4gICA6ODAuMDAgICBNYXguICAgOjguMDAwMCAgXG4gKE90aGVyKSAgICAgICAgICAgICAgICAgICAgICAgICA6MTMwMSAgICAgICAgICAgICAgICBOQSdzICAgOjI2MyAgICAgICAgICAgICAgICAgICAgIFxuICAgICBQYXJjaCAgICAgICAgICAgIFRpY2tldCAgICAgICAgICBGYXJlICAgICAgICAgICAgICAgICAgICAgQ2FiaW4gICAgICBFbWJhcmtlZFxuIE1pbi4gICA6MC4wMDAgICBDQS4gMjM0MzogIDExICAgTWluLiAgIDogIDAuMDAwICAgICAgICAgICAgICAgICAgOjEwMTQgICAgOiAgMiAgIFxuIDFzdCBRdS46MC4wMDAgICAxNjAxICAgIDogICA4ICAgMXN0IFF1LjogIDcuODk2ICAgQzIzIEMyNSBDMjcgICAgOiAgIDYgICBDOjI3MCAgIFxuIE1lZGlhbiA6MC4wMDAgICBDQSAyMTQ0IDogICA4ICAgTWVkaWFuIDogMTQuNDU0ICAgQjU3IEI1OSBCNjMgQjY2OiAgIDUgICBROjEyMyAgIFxuIE1lYW4gICA6MC4zODUgICAzMTAxMjk1IDogICA3ICAgTWVhbiAgIDogMzMuMjk1ICAgRzYgICAgICAgICAgICAgOiAgIDUgICBTOjkxNCAgIFxuIDNyZCBRdS46MC4wMDAgICAzNDcwNzcgIDogICA3ICAgM3JkIFF1LjogMzEuMjc1ICAgQjk2IEI5OCAgICAgICAgOiAgIDQgICAgICAgICAgIFxuIE1heC4gICA6OS4wMDAgICAzNDcwODIgIDogICA3ICAgTWF4LiAgIDo1MTIuMzI5ICAgQzIyIEMyNiAgICAgICAgOiAgIDQgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAoT3RoZXIpIDoxMjYxICAgTkEncyAgIDoxICAgICAgICAgKE90aGVyKSAgICAgICAgOiAyNzEgICAgICAgICAgIFxuIn0= -->
+<pre><code>  PassengerId      Survived          Pclass     
+ Min.   :   1   Min.   :0.0000   Min.   :1.000  
+ 1st Qu.: 328   1st Qu.:0.0000   1st Qu.:2.000  
+ Median : 655   Median :0.0000   Median :3.000  
+ Mean   : 655   Mean   :0.3838   Mean   :2.295  
+ 3rd Qu.: 982   3rd Qu.:1.0000   3rd Qu.:3.000  
+ Max.   :1309   Max.   :1.0000   Max.   :3.000  
+                NA's   :418                     
+                               Name          Sex           Age            SibSp       
+ Connolly, Miss. Kate            :   2   female:466   Min.   : 0.17   Min.   :0.0000  
+ Kelly, Mr. James                :   2   male  :843   1st Qu.:21.00   1st Qu.:0.0000  
+ Abbing, Mr. Anthony             :   1                Median :28.00   Median :0.0000  
+ Abbott, Mr. Rossmore Edward     :   1                Mean   :29.88   Mean   :0.4989  
+ Abbott, Mrs. Stanton (Rosa Hunt):   1                3rd Qu.:39.00   3rd Qu.:1.0000  
+ Abelson, Mr. Samuel             :   1                Max.   :80.00   Max.   :8.0000  
+ (Other)                         :1301                NA's   :263                     
+     Parch            Ticket          Fare                     Cabin      Embarked
+ Min.   :0.000   CA. 2343:  11   Min.   :  0.000                  :1014    :  2   
+ 1st Qu.:0.000   1601    :   8   1st Qu.:  7.896   C23 C25 C27    :   6   C:270   
+ Median :0.000   CA 2144 :   8   Median : 14.454   B57 B59 B63 B66:   5   Q:123   
+ Mean   :0.385   3101295 :   7   Mean   : 33.295   G6             :   5   S:914   
+ 3rd Qu.:0.000   347077  :   7   3rd Qu.: 31.275   B96 B98        :   4           
+ Max.   :9.000   347082  :   7   Max.   :512.329   C22 C26        :   4           
+                 (Other) :1261   NA's   :1         (Other)        : 271           </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Add a new chunk by clicking the <em>Insert Chunk</em> button on the toolbar or by pressing <em>Ctrl+Alt+I</em>.</p>
@@ -214,7 +248,7 @@ str(full)
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkVEQSBUaXRhbmljIERhdGFzZXQiDQphdXRob3I6ICJKb25hdGhhbiBZdSINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNClRoaXMgaXMgYW4gW1IgTWFya2Rvd25dKGh0dHA6Ly9ybWFya2Rvd24ucnN0dWRpby5jb20pIE5vdGVib29rLiBXaGVuIHlvdSBleGVjdXRlIGNvZGUgd2l0aGluIHRoZSBub3RlYm9vaywgdGhlIHJlc3VsdHMgYXBwZWFyIGJlbmVhdGggdGhlIGNvZGUuIA0KDQpUcnkgZXhlY3V0aW5nIHRoaXMgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpSdW4qIGJ1dHRvbiB3aXRoaW4gdGhlIGNodW5rIG9yIGJ5IHBsYWNpbmcgeW91ciBjdXJzb3IgaW5zaWRlIGl0IGFuZCBwcmVzc2luZyAqQ3RybCtTaGlmdCtFbnRlciouIA0KDQojIERhdGEgbG9hZGluZyBhbmQgY2xlYW5pbmcNCmBgYHtyfQ0KIyBJIHVzZWQgdGhlIGZvbGxvd2luZyBwYWNrYWdlcw0KDQojIEkgbG9hZGVkIHRoZSBkYXRhDQp0cmFpbiA8LSByZWFkLmNzdigidHJhaW4uY3N2IiwgaGVhZGVyID0gVFJVRSkNCnRlc3QgPC0gcmVhZC5jc3YoInRlc3QuY3N2IiwgaGVhZGVyID0gVFJVRSkNCg0KIyBJIGNyZWF0ZWQgYSBjb21iaW5lZCBkYXRhc2V0DQp0ZXN0JFN1cnZpdmVkIDwtIE5BDQpmdWxsIDwtIHJiaW5kKHRyYWluLCB0ZXN0KQ0KDQojIENoZWNrZWQgdGhlIHN0cnVjdHVyZQ0Kc3RyKGZ1bGwpDQoNCiMgQ2hlY2tlZCBzdW1tYXJ5DQpzdW1tYXJ5KGZ1bGwpDQoNCg0KYGBgDQoNCkFkZCBhIG5ldyBjaHVuayBieSBjbGlja2luZyB0aGUgKkluc2VydCBDaHVuayogYnV0dG9uIG9uIHRoZSB0b29sYmFyIG9yIGJ5IHByZXNzaW5nICpDdHJsK0FsdCtJKi4NCg0KV2hlbiB5b3Ugc2F2ZSB0aGUgbm90ZWJvb2ssIGFuIEhUTUwgZmlsZSBjb250YWluaW5nIHRoZSBjb2RlIGFuZCBvdXRwdXQgd2lsbCBiZSBzYXZlZCBhbG9uZ3NpZGUgaXQgKGNsaWNrIHRoZSAqUHJldmlldyogYnV0dG9uIG9yIHByZXNzICpDdHJsK1NoaWZ0K0sqIHRvIHByZXZpZXcgdGhlIEhUTUwgZmlsZSkuDQoNClRoZSBwcmV2aWV3IHNob3dzIHlvdSBhIHJlbmRlcmVkIEhUTUwgY29weSBvZiB0aGUgY29udGVudHMgb2YgdGhlIGVkaXRvci4gQ29uc2VxdWVudGx5LCB1bmxpa2UgKktuaXQqLCAqUHJldmlldyogZG9lcyBub3QgcnVuIGFueSBSIGNvZGUgY2h1bmtzLiBJbnN0ZWFkLCB0aGUgb3V0cHV0IG9mIHRoZSBjaHVuayB3aGVuIGl0IHdhcyBsYXN0IHJ1biBpbiB0aGUgZWRpdG9yIGlzIGRpc3BsYXllZC4NCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkVEQSBUaXRhbmljIERhdGFzZXQiDQphdXRob3I6ICJKb25hdGhhbiBZdSINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNClRoaXMgaXMgYW4gW1IgTWFya2Rvd25dKGh0dHA6Ly9ybWFya2Rvd24ucnN0dWRpby5jb20pIE5vdGVib29rLiBXaGVuIHlvdSBleGVjdXRlIGNvZGUgd2l0aGluIHRoZSBub3RlYm9vaywgdGhlIHJlc3VsdHMgYXBwZWFyIGJlbmVhdGggdGhlIGNvZGUuIA0KDQpUcnkgZXhlY3V0aW5nIHRoaXMgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpSdW4qIGJ1dHRvbiB3aXRoaW4gdGhlIGNodW5rIG9yIGJ5IHBsYWNpbmcgeW91ciBjdXJzb3IgaW5zaWRlIGl0IGFuZCBwcmVzc2luZyAqQ3RybCtTaGlmdCtFbnRlciouIA0KDQojIERhdGEgbG9hZGluZyBhbmQgY2xlYW5pbmcNCmBgYHtyfQ0KIyBJIHVzZWQgdGhlIGZvbGxvd2luZyBwYWNrYWdlcw0KDQojIExvYWRlZCB0aGUgZGF0YQ0KdHJhaW4gPC0gcmVhZC5jc3YoInRyYWluLmNzdiIsIGhlYWRlciA9IFRSVUUpDQp0ZXN0IDwtIHJlYWQuY3N2KCJ0ZXN0LmNzdiIsIGhlYWRlciA9IFRSVUUpDQoNCiMgQ3JlYXRlZCBhIGNvbWJpbmVkIGRhdGFzZXQNCnRlc3QkU3Vydml2ZWQgPC0gTkENCmZ1bGwgPC0gcmJpbmQodHJhaW4sIHRlc3QpDQoNCiMgQ2hlY2tlZCB0aGUgc3RydWN0dXJlDQpzdHIoZnVsbCkNCg0KIyBDaGVja2VkIHN1bW1hcnkNCnN1bW1hcnkoZnVsbCkNCg0KDQpgYGANCg0KQWRkIGEgbmV3IGNodW5rIGJ5IGNsaWNraW5nIHRoZSAqSW5zZXJ0IENodW5rKiBidXR0b24gb24gdGhlIHRvb2xiYXIgb3IgYnkgcHJlc3NpbmcgKkN0cmwrQWx0K0kqLg0KDQpXaGVuIHlvdSBzYXZlIHRoZSBub3RlYm9vaywgYW4gSFRNTCBmaWxlIGNvbnRhaW5pbmcgdGhlIGNvZGUgYW5kIG91dHB1dCB3aWxsIGJlIHNhdmVkIGFsb25nc2lkZSBpdCAoY2xpY2sgdGhlICpQcmV2aWV3KiBidXR0b24gb3IgcHJlc3MgKkN0cmwrU2hpZnQrSyogdG8gcHJldmlldyB0aGUgSFRNTCBmaWxlKS4NCg0KVGhlIHByZXZpZXcgc2hvd3MgeW91IGEgcmVuZGVyZWQgSFRNTCBjb3B5IG9mIHRoZSBjb250ZW50cyBvZiB0aGUgZWRpdG9yLiBDb25zZXF1ZW50bHksIHVubGlrZSAqS25pdCosICpQcmV2aWV3KiBkb2VzIG5vdCBydW4gYW55IFIgY29kZSBjaHVua3MuIEluc3RlYWQsIHRoZSBvdXRwdXQgb2YgdGhlIGNodW5rIHdoZW4gaXQgd2FzIGxhc3QgcnVuIGluIHRoZSBlZGl0b3IgaXMgZGlzcGxheWVkLg0K</div>
 
 
 
